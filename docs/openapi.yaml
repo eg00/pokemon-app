@@ -1,0 +1,11 @@
+openapi: "3.1.0"
+info:
+  version: 1.0.0
+  title: Pokemon API
+  license:
+    name: MIT
+servers:
+  - url: http://localhost/api
+
+
+

@@ -22,6 +22,10 @@ class Ability extends Model
 {
     use HasFactory;
 
+    public const IMAGE_PATH = '/images/abilities';
+
+    public const IMAGE_DISK = 'public';
+
     protected $casts = [
         'created_at' => 'immutable_datetime',
         'updated_at' => 'immutable_datetime',

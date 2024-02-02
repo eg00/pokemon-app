@@ -1,0 +1,20 @@
+
+AbilityResource:
+  type: object
+  description: Pokemon`s ability
+  properties:
+    name_en:
+      type: string
+      description: English ability name
+      example: "ability"
+    name_jp:
+      type: string
+      description: Japanese ability name
+      example: "ability"
+    image:
+      type: string
+      format: binary
+  required:
+    - name_en
+    - name_jp
+    - image

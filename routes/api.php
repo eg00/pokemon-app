@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AbilityController;
+use App\Http\Controllers\LocationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('locations', \App\Http\Controllers\LocationController::class);
+Route::apiResource('locations', LocationController::class);
+Route::apiResource('abilities', AbilityController::class);

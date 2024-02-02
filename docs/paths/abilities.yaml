@@ -1,0 +1,98 @@
+indexRequest:
+  get:
+    tags:
+      - Abilities
+    summary: Abilities index
+    operationId: getAbilitiesIndex
+    responses:
+      "200":
+        description: List of abilities
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    $ref: "../definitions/abilities.yaml#/AbilityResource"
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"
+  post:
+    tags:
+      - Locations
+    summary: Create a new ability
+    operationId: createAbility
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "../definitions/abilities.yaml#/AbilityResource"
+    responses:
+      "201":
+        description: Created
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"
+
+showRequest:
+  get:
+    tags:
+      - Abilities
+    summary: Ability
+    operationId: getAbility
+    parameters:
+      - name: id
+        in: path
+        required: true
+    responses:
+      "200":
+        description: Ability
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions/abilities.yaml#/AbilityResource"
+      "404":
+        $ref: "../common/responses.yaml#/definitions/404"
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"
+
+  delete:
+    tags:
+      - Abilities
+    summary: Delete an ability
+    operationId: deleteLocation
+    parameters:
+      - name: id
+        in: path
+        required: true
+    responses:
+      "204":
+        description: No content
+      "404":
+        $ref: "../common/responses.yaml#/definitions/404"
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"
+
+  patch:
+    tags:
+      - Abilities
+    summary: Update an ability
+    operationId: updateAbility
+    parameters:
+      - name: id
+        in: path
+        required: true
+    requestBody:
+      required: true
+      content:
+        multipart/form-data:
+          schema:
+            $ref: "../definitions/abilities.yaml#/AbilityResource"
+    responses:
+      "200":
+        description: Updated
+      "404":
+        $ref: "../common/responses.yaml#/definitions/404"
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"

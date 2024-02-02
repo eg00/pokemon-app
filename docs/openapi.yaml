@@ -7,10 +7,20 @@ info:
 servers:
   - url: http://localhost/api
 
+tags:
+  - name: Locations
+  - name: Abilities
+
 paths:
   /locations:
     $ref: "./paths/locations.yaml#/indexRequest"
 
   /locations/{id}:
     $ref: "./paths/locations.yaml#/showRequest"
+
+  /abilities:
+    $ref: "./paths/abilities.yaml#/indexRequest"
+
+  /abilities/{id}:
+    $ref: "./paths/abilities.yaml#/showRequest"
 

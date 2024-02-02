@@ -1,0 +1,31 @@
+definitions:
+  "400":
+    description: Bad request
+  "404":
+    description: Not found
+  "409":
+    description: Conflict
+  "422":
+    description: Validation failed
+    content:
+      application/json:
+        schema:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: object
+          example:
+            1:
+              message: "The name is required. (1 and more errors)"
+              errors:
+                name: ["The name field is required.", "The name format is invalid."]
+                email: ["The email must be a valid email address."]
+
+  "429":
+    description: Too many requests
+  "500":
+    description: Internal server error

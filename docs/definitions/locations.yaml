@@ -1,0 +1,21 @@
+
+LocationResource:
+  type: object
+  description: Pokemon`s location
+  properties:
+    name:
+      type: string
+      description: Location name
+      example: "Some Location name"
+    region:
+      type: string
+      description: Location`s region
+      enum: ["Volcano", "Cinnabar Gym", "Mansion", "Cinnabar Lab", "Hoenn"]
+      example: "Hoenn"
+    children:
+      type: array
+      items:
+        $ref: "#/LocationResource"
+  required:
+    - name
+    - region

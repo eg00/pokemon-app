@@ -10,7 +10,7 @@ class CreateLocationData
 {
     public function __construct(
         public readonly string $name,
-        public readonly Region $region,
+        public readonly string $region,
         public readonly ?int $parentId,
     ) {
     }

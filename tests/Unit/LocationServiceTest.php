@@ -47,7 +47,7 @@ class LocationServiceTest extends TestCase
 
         $dto = new CreateLocationData(
             name: $data->name,
-            region: $data->region,
+            region: $data->region->value,
             parentId: $data->parent_id,
         );
         $this->service->create($dto);
@@ -60,7 +60,7 @@ class LocationServiceTest extends TestCase
         $data = Location::factory()->make();
         $this->service->update($location->id, new UpdateLocationData(
             name: $data->name,
-            region: $data->region,
+            region: $data->region->value,
             parentId: $data->parent_id,
         ));
         $this->assertDatabaseHas('locations', $data->toArray());

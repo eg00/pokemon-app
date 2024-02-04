@@ -44,7 +44,7 @@ class LocationController extends Controller
         try {
             $data = new CreateLocationData(
                 name: $request->input('name'),
-                region: Region::from($request->input('region')),
+                region: $request->input('region'),
                 parentId: $request->input('parent_id'),
             );
 
@@ -87,7 +87,7 @@ class LocationController extends Controller
         try {
             $data = new UpdateLocationData(
                 name: $request->input('name'),
-                region: Region::from($request->input('region')),
+                region: $request->input('region'),
                 parentId: $request->input('parent_id'),
             );
 

@@ -66,7 +66,7 @@ class PokemonRepository
             $pokemon->location()->save($location);
         }
         if (! empty($data->abilityIds)) {
-            $abilities = $this->abilityRepository->find($data->abilityIds);
+            $abilities = $this->abilityRepository->findMany($data->abilityIds);
             $pokemon->abilities()->sync($abilities);
         }
         $pokemon->save();

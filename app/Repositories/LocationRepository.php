@@ -6,6 +6,7 @@ namespace App\Repositories;
 
 use App\Dto\CreateLocationData;
 use App\Dto\UpdateLocationData;
+use App\Enums\Region;
 use App\Models\Location;
 use Illuminate\Support\Collection;
 
@@ -38,7 +39,7 @@ class LocationRepository
     {
         $location = new Location();
         $location->name = $data->name;
-        $location->region = $data->region;
+        $location->region = Region::from($data->region);
         $location->parent_id = $data->parentId;
         $location->save();
 
@@ -51,7 +52,7 @@ class LocationRepository
             $location->name = $data->name;
         }
         if ($data->region !== null) {
-            $location->region = $data->region;
+            $location->region = Region::from($data->region);
         }
         $location->parent_id = $data->parentId;
         $location->save();

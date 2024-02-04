@@ -86,27 +86,27 @@ class PokemonController extends Controller
     public function update(UpdatePokemonRequest $request, int $id): PokemonResource|JsonResponse
     {
 
-        //        try {
-        $data = new UpdatePokemonData(
-            name: $request->input('name'),
-            image: $request->image,
-            shape: $request->input('shape'),
-            locationId: $request->input('location_id'),
-            abilityIds: $request->input('ability_ids', []),
-        );
+        try {
+            $data = new UpdatePokemonData(
+                name: $request->input('name'),
+                image: $request->image,
+                shape: $request->input('shape'),
+                locationId: $request->input('location_id'),
+                abilityIds: $request->input('ability_ids', []),
+            );
 
-        return new PokemonResource($this->service->update($id, $data));
-        //        } catch (NotFoundException) {
-        //            return new JsonResponse(
-        //                'Not found',
-        //                Response::HTTP_NOT_FOUND,
-        //            );
-        //        } catch (OperationFailedException) {
-        //            return new JsonResponse(
-        //                'An error occurs while performing the operation',
-        //                Response::HTTP_INTERNAL_SERVER_ERROR,
-        //            );
-        //        }
+            return new PokemonResource($this->service->update($id, $data));
+        } catch (NotFoundException) {
+            return new JsonResponse(
+                'Not found',
+                Response::HTTP_NOT_FOUND,
+            );
+        } catch (OperationFailedException) {
+            return new JsonResponse(
+                'An error occurs while performing the operation',
+                Response::HTTP_INTERNAL_SERVER_ERROR,
+            );
+        }
     }
 
     /**

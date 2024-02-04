@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Dto\CreateLocationData;
 use App\Dto\UpdateLocationData;
-use App\Enums\Region;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\OperationFailedException;
 use App\Http\Requests\Location\CreateLocationRequest;

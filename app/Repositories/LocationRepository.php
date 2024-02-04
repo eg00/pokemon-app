@@ -22,7 +22,7 @@ class LocationRepository
     public function find(int|array $id): Location
     {
         /** @var Location */
-        return Location:: query()->with(['children'])->findOrFail($id);
+        return Location::query()->with(['children'])->findOrFail($id);
     }
 
     /**
@@ -31,7 +31,7 @@ class LocationRepository
     public function findMany(array $ids): Collection
     {
         /** @var Collection<Location> */
-        return Location:: query()->with(['children'])->findOrFail($ids);
+        return Location::query()->with(['children'])->findOrFail($ids);
     }
 
     public function create(CreateLocationData $data): Location

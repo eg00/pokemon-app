@@ -35,13 +35,13 @@ class PokemonRepository
     public function create(CreatePokemonData $data): Pokemon
     {
         $image = $this->storeImage($data->image);
-        $abilities = $this->abilityRepository->findMany($data->ability_ids);
+        $abilities = $this->abilityRepository->findMany($data->abilityIds);
 
         $pokemon = new Pokemon();
         $pokemon->name = $data->name;
         $pokemon->shape = Shape::from($data->shape);
         $pokemon->image = $image;
-        $pokemon->location_id = $data->location_id;
+        $pokemon->location_id = $data->locationId;
         $pokemon->save();
         $pokemon->abilities()->attach($abilities);
 
@@ -61,12 +61,12 @@ class PokemonRepository
         if ($data->shape !== null) {
             $pokemon->shape = Shape::from($data->shape);
         }
-        if ($data->location_id !== null) {
-            $location = $this->locationRepository->find($data->location_id);
+        if ($data->locationId !== null) {
+            $location = $this->locationRepository->find($data->locationId);
             $pokemon->location()->save($location);
         }
-        if (!empty($data->ability_ids)) {
-            $abilities = $this->abilityRepository->find($data->ability_ids);
+        if (! empty($data->abilityIds)) {
+            $abilities = $this->abilityRepository->find($data->abilityIds);
             $pokemon->abilities()->sync($abilities);
         }
         $pokemon->save();

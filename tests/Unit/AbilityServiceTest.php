@@ -49,8 +49,8 @@ class AbilityServiceTest extends TestCase
         $data = Ability::factory()->make();
 
         $dto = new CreateAbilityData(
-            name_en: $data->name_en,
-            name_jp: $data->name_en,
+            nameEn: $data->name_en,
+            nameJp: $data->name_en,
             image: UploadedFile::fake()->image('ability.jpg'),
         );
         $this->service->create($dto);
@@ -64,8 +64,8 @@ class AbilityServiceTest extends TestCase
         $ability = Ability::factory()->create();
         $data = Ability::factory()->make();
         $this->service->update($ability->id, new UpdateAbilityData(
-            name_en: $data->name_en,
-            name_jp: $data->name_en,
+            nameEn: $data->name_en,
+            nameJp: $data->name_en,
             image: UploadedFile::fake()->image('ability.jpg'),
         ));
 

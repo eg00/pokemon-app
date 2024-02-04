@@ -9,14 +9,14 @@ use Illuminate\Http\UploadedFile;
 class UpdatePokemonData
 {
     /**
-     * @param  array<int>  $ability_ids
+     * @param  array<int>  $abilityIds
      */
     public function __construct(
         public readonly ?string $name,
         public readonly ?UploadedFile $image,
         public readonly ?string $shape,
-        public readonly ?int $location_id,
-        public readonly array $ability_ids,
+        public readonly ?int $locationId,
+        public readonly array $abilityIds,
     ) {
     }
 }

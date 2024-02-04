@@ -2,13 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Dto\CreateAbilityData;
 use App\Dto\CreatePokemonData;
-use App\Dto\UpdateAbilityData;
 use App\Dto\UpdatePokemonData;
-use App\Models\Ability;
 use App\Models\Pokemon;
-use App\Services\AbilityService;
 use App\Services\PokemonService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -55,13 +51,12 @@ class PokemonServiceTest extends TestCase
         Storage::fake('public');
         $data = Pokemon::factory()->make();
 
-
         $dto = new CreatePokemonData(
             name: $data->name,
             image: UploadedFile::fake()->image('pokemon.jpg'),
             shape: $data->shape->value,
-            location_id: $data->location_id,
-            ability_ids: [],
+            locationId: $data->location_id,
+            abilityIds: [],
         );
         $this->service->create($dto);
 
@@ -77,8 +72,8 @@ class PokemonServiceTest extends TestCase
             name: $data->name,
             shape: $data->shape->value,
             image: UploadedFile::fake()->image('pokemon.jpg'),
-            location_id:null,
-            ability_ids: [],
+            locationId: null,
+            abilityIds: [],
         ));
 
         $this->assertDatabaseHas('pokemon', ['name' => $data->name, 'shape' => $data->shape]);

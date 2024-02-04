@@ -9,8 +9,8 @@ use Illuminate\Http\UploadedFile;
 class CreateAbilityData
 {
     public function __construct(
-        public readonly string $name_en,
-        public readonly string $name_jp,
+        public readonly string $nameEn,
+        public readonly string $nameJp,
         public readonly UploadedFile $image,
     ) {
     }

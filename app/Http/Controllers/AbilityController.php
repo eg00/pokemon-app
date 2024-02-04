@@ -42,8 +42,8 @@ class AbilityController extends Controller
     {
         try {
             $data = new CreateAbilityData(
-                name_en: $request->input('name_en'),
-                name_jp: $request->input('name_jp'),
+                nameEn: $request->input('name_en'),
+                nameJp: $request->input('name_jp'),
                 image: $request->image,
             );
 
@@ -86,8 +86,8 @@ class AbilityController extends Controller
 
         try {
             $data = new UpdateAbilityData(
-                name_en: $request->input('name_en'),
-                name_jp: $request->input('name_jp'),
+                nameEn: $request->input('name_en'),
+                nameJp: $request->input('name_jp'),
                 image: $request->image,
             );
 

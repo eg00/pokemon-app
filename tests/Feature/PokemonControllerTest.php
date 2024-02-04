@@ -36,7 +36,7 @@ class PokemonControllerTest extends TestCase
         $response = $this->get(route('pokemons.show', $pokemon));
 
         $response->assertStatus(200)
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->where('data.id', $pokemon->id)
                 ->where('data.name', $pokemon->name)
                 ->where('data.shape', $pokemon->shape)
@@ -60,7 +60,7 @@ class PokemonControllerTest extends TestCase
         );
 
         $response->assertStatus(201)
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->has('data.id')
                 ->where('data.name', $data->name)
                 ->where('data.shape', $data->shape->value)
@@ -81,7 +81,7 @@ class PokemonControllerTest extends TestCase
         );
 
         $response->assertStatus(200)
-            ->assertJson(fn(AssertableJson $json) => $json
+            ->assertJson(fn (AssertableJson $json) => $json
                 ->where('data.id', $location->id)
                 ->where('data.name', $data->name)
                 ->where('data.shape', $data->shape->value)

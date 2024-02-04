@@ -36,8 +36,8 @@ class AbilityRepository
     {
         $image = $this->storeImage($data->image);
         $ability = new Ability();
-        $ability->name_en = $data->name_en;
-        $ability->name_jp = $data->name_jp;
+        $ability->name_en = $data->nameEn;
+        $ability->name_jp = $data->nameJp;
         $ability->image = $image;
         $ability->save();
 
@@ -46,11 +46,11 @@ class AbilityRepository
 
     public function update(Ability $ability, UpdateAbilityData $data): Ability
     {
-        if ($data->name_en !== null) {
-            $ability->name_en = $data->name_en;
+        if ($data->nameEn !== null) {
+            $ability->name_en = $data->nameEn;
         }
-        if ($data->name_jp !== null) {
-            $ability->name_jp = $data->name_jp;
+        if ($data->nameJp !== null) {
+            $ability->name_jp = $data->nameJp;
         }
         if ($data->image !== null) {
             $image = $this->storeImage($data->image);

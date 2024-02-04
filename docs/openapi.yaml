@@ -8,10 +8,17 @@ servers:
   - url: http://localhost/api
 
 tags:
+  - name: Pokemons
   - name: Locations
   - name: Abilities
 
 paths:
+  /pokemons:
+    $ref: "./paths/pokemons.yaml#/indexRequest"
+
+  /pokemons/{id}:
+    $ref: "./paths/pokemons.yaml#/showRequest"
+
   /locations:
     $ref: "./paths/locations.yaml#/indexRequest"
 

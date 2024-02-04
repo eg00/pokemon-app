@@ -21,7 +21,7 @@ class LocationResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'region' => $this->region,
-            'children' => LocationResource::collection($this->children),
+            'children' => LocationResource::collection($this->whenLoaded('children')),
         ];
     }
 }

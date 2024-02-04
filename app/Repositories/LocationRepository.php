@@ -17,11 +17,21 @@ class LocationRepository
     }
 
     /**
-     * @param int|array<int> $id
+     * @param  int|array<int>  $id
      */
     public function find(int|array $id): Location
     {
-        return Location::findOrFail($id);
+        /** @var Location */
+        return Location:: query()->with(['children'])->findOrFail($id);
+    }
+
+    /**
+     * @param  array<int>  $ids
+     */
+    public function findMany(array $ids): Collection
+    {
+        /** @var Collection<Location> */
+        return Location:: query()->with(['children'])->findOrFail($ids);
     }
 
     public function create(CreateLocationData $data): Location

@@ -34,11 +34,6 @@ class Location extends Model
         'updated_at' => 'immutable_datetime',
     ];
 
-    /**
-     * @var array<string>
-     */
-    protected $with = ['children'];
-
     public function parent(): HasOne
     {
         return $this->hasOne(Location::class, 'id', 'parent_id');

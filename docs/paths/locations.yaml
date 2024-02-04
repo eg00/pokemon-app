@@ -56,24 +56,6 @@ showRequest:
         $ref: "../common/responses.yaml#/definitions/404"
       "500":
         $ref: "../common/responses.yaml#/definitions/500"
-
-  delete:
-    tags:
-      - Locations
-    summary: Delete a location
-    operationId: deleteLocation
-    parameters:
-      - name: id
-        in: path
-        required: true
-    responses:
-      "204":
-        description: No content
-      "404":
-        $ref: "../common/responses.yaml#/definitions/404"
-      "500":
-        $ref: "../common/responses.yaml#/definitions/500"
-
   patch:
     tags:
       - Locations
@@ -92,6 +74,22 @@ showRequest:
     responses:
       "200":
         description: Updated
+      "404":
+        $ref: "../common/responses.yaml#/definitions/404"
+      "500":
+        $ref: "../common/responses.yaml#/definitions/500"
+  delete:
+    tags:
+      - Locations
+    summary: Delete a location
+    operationId: deleteLocation
+    parameters:
+      - name: id
+        in: path
+        required: true
+    responses:
+      "204":
+        description: No content
       "404":
         $ref: "../common/responses.yaml#/definitions/404"
       "500":

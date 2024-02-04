@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Dto\CreateAbilityData;
-use App\Dto\UpdateAbilityData;
+use App\Dto\CreatePokemonData;
+use App\Dto\UpdatePokemonData;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\OperationFailedException;
-use App\Models\Ability;
-use App\Repositories\AbilityRepository;
+use App\Models\Pokemon;
+use App\Repositories\PokemonRepository;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 
-class AbilityService
+class PokemonService
 {
-    public function __construct(protected AbilityRepository $repository)
+    public function __construct(protected PokemonRepository $repository)
     {
     }
 
@@ -36,20 +36,20 @@ class AbilityService
      * @throws NotFoundException
      * @throws OperationFailedException
      */
-    public function find(int $id): Ability
+    public function find(int $id): Pokemon
     {
         try {
-            $ability = $this->repository->find($id);
+            $pokemon = $this->repository->find($id);
         } catch (ModelNotFoundException) {
             throw new NotFoundException();
         } catch (Exception $e) {
             throw new OperationFailedException($e->getMessage(), 0, $e);
         }
 
-        return $ability;
+        return $pokemon;
     }
 
-    public function create(CreateAbilityData $data): Ability
+    public function create(CreatePokemonData $data): Pokemon
     {
         try {
             return $this->repository->create($data);
@@ -62,11 +62,11 @@ class AbilityService
      * @throws NotFoundException
      * @throws OperationFailedException
      */
-    public function update(int $id, UpdateAbilityData $data): Ability
+    public function update(int $id, UpdatePokemonData $data): Pokemon
     {
-        $ability = $this->find($id);
+        $pokemon = $this->find($id);
         try {
-            return $this->repository->update($ability, $data);
+            return $this->repository->update($pokemon, $data);
         } catch (Exception $e) {
             throw new OperationFailedException($e->getMessage(), 0, $e);
         }

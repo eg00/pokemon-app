@@ -1,0 +1,64 @@
+
+PokemonResource:
+  type: object
+  description: Pokemon
+  properties:
+    id:
+      type: integer
+      example: 1
+    name:
+      type: string
+      description: Pokemon name
+      example: "Bulbasaur"
+    image:
+      type: string
+      example: "https://placehold.jp/150x150.png"
+    shape:
+      type: string
+      description: Pokemon`s shape
+      enum: ["head", "head_legs", "fins", "wings"]
+      example: "wings"
+    location:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          description: Location name
+          example: "Some Location name"
+        region:
+          type: string
+          description: Location`s region
+          enum: [ "Volcano", "Cinnabar Gym", "Mansion", "Cinnabar Lab", "Hoenn" ]
+          example: "Hoenn"
+    abilities:
+      type: array
+      items:
+        $ref: "abilities.yaml#/AbilityResource"
+
+PokemonCreateUpdateResource:
+  type: object
+  description: Pokemon
+  properties:
+    name:
+      type: string
+      description: Pokemon name
+      example: "Bulbasaur"
+    image:
+      type: string
+      format: binary
+    shape:
+      type: string
+      description: Pokemon`s shape
+      enum: ["head", "head_legs", "fins", "wings"]
+      example: "wings"
+    location_id:
+      type: integer
+      example: 1
+    abilities:
+      type: array
+      items:
+        type: integer
+        example: 1

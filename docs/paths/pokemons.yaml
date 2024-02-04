@@ -1,12 +1,12 @@
 indexRequest:
   get:
     tags:
-      - Abilities
-    summary: Abilities index
-    operationId: getAbilitiesIndex
+      - Pokemons
+    summary: Pokemons index
+    operationId: getPokemonsIndex
     responses:
       "200":
-        description: List of abilities
+        description: List of pokemons
         content:
           application/json:
             schema:
@@ -15,52 +15,55 @@ indexRequest:
                 data:
                   type: array
                   items:
-                    $ref: "../definitions/abilities.yaml#/AbilityResource"
+                    $ref: "../definitions/pokemons.yaml#/PokemonResource"
       "500":
         $ref: "../common/responses.yaml#/definitions/500"
   post:
     tags:
-      - Abilities
-    summary: Create a new ability
-    operationId: createAbility
+      - Pokemons
+    summary: Create a new pokemon
+    operationId: createPokemon
     requestBody:
       required: true
       content:
         multipart/form-data:
           schema:
-            $ref: "../definitions/abilities.yaml#/AbilityCreateUpdateResource"
+            $ref: "../definitions/pokemons.yaml#/PokemonCreateUpdateResource"
     responses:
       "201":
-        description: Created
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions/pokemons.yaml#/PokemonResource"
       "500":
         $ref: "../common/responses.yaml#/definitions/500"
 
 showRequest:
   get:
     tags:
-      - Abilities
-    summary: Ability
-    operationId: getAbility
+      - Pokemons
+    summary: Pokemon
+    operationId: getPokemon
     parameters:
       - name: id
         in: path
         required: true
     responses:
       "200":
-        description: Ability
+        description: Pokemon
         content:
           application/json:
             schema:
-              $ref: "../definitions/abilities.yaml#/AbilityResource"
+              $ref: "../definitions/pokemons.yaml#/PokemonResource"
       "404":
         $ref: "../common/responses.yaml#/definitions/404"
       "500":
         $ref: "../common/responses.yaml#/definitions/500"
   patch:
     tags:
-      - Abilities
-    summary: Update an ability
-    operationId: updateAbility
+      - Pokemons
+    summary: Update a pokemon
+    operationId: updatePokemon
     parameters:
       - name: id
         in: path
@@ -70,19 +73,22 @@ showRequest:
       content:
         multipart/form-data:
           schema:
-            $ref: "../definitions/abilities.yaml#/AbilityCreateUpdateResource"
+            $ref: "../definitions/pokemons.yaml#/PokemonCreateUpdateResource"
     responses:
       "200":
-        description: Updated
+        content:
+          application/json:
+            schema:
+              $ref: "../definitions/pokemons.yaml#/PokemonResource"
       "404":
         $ref: "../common/responses.yaml#/definitions/404"
       "500":
         $ref: "../common/responses.yaml#/definitions/500"
   delete:
     tags:
-      - Abilities
-    summary: Delete an ability
-    operationId: deleteAbility
+      - Pokemons
+    summary: Delete a pokemon
+    operationId: deletePokemon
     parameters:
       - name: id
         in: path

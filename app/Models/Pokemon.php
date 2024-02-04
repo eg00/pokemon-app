@@ -9,16 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 /**
  * @property int $id
  * @property string $name
  * @property string $image
  * @property Shape $shape
- * @property Location $location
- * @property Ability $ability
+ * @property int $location_id
  * @property CarbonImmutable $created_at
  * @property CarbonImmutable $updated_at
+ * @property-read Collection<Ability> $abilities
+ * @property-read Location $location
  *
  * @method static Pokemon|null find($id, $columns = ['*'])
  * @method static PokemonFactory factory(...$parameters)
@@ -27,6 +29,10 @@ class Pokemon extends Model
 {
     use HasFactory;
 
+    public const IMAGE_PATH = '/images/pokemon';
+
+    public const IMAGE_DISK = 'public';
+
     protected $casts = [
         'created_at' => 'immutable_datetime',
         'updated_at' => 'immutable_datetime',
@@ -34,7 +40,7 @@ class Pokemon extends Model
 
     public function location(): HasOne
     {
-        return $this->hasOne(Location::class, 'location_id', 'id');
+        return $this->hasOne(Location::class, 'id', 'location_id');
     }
 
     public function abilities(): BelongsToMany

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbilityController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('locations', LocationController::class);
 Route::apiResource('abilities', AbilityController::class);
+Route::apiResource('pokemons', PokemonController::class);

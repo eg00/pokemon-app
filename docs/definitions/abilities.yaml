@@ -3,6 +3,29 @@ AbilityResource:
   type: object
   description: Pokemon`s ability
   properties:
+    id:
+      type: integer
+      example: 1
+    name_en:
+      type: string
+      description: English ability name
+      example: "ability"
+    name_jp:
+      type: string
+      description: Japanese ability name
+      example: "ability"
+    image:
+      type: string
+      example: "https://placehold.jp/150x150.png"
+  required:
+    - name_en
+    - name_jp
+    - image
+
+AbilityCreateUpdateResource:
+  type: object
+  description: Pokemon`s ability
+  properties:
     name_en:
       type: string
       description: English ability name

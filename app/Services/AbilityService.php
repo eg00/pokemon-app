@@ -11,6 +11,7 @@ use App\Exceptions\OperationFailedException;
 use App\Models\Ability;
 use App\Repositories\AbilityRepository;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 
 class AbilityService
@@ -39,14 +40,11 @@ class AbilityService
     {
         try {
             $ability = $this->repository->find($id);
+        } catch (ModelNotFoundException) {
+            throw new NotFoundException();
         } catch (Exception $e) {
             throw new OperationFailedException($e->getMessage(), 0, $e);
         }
-
-        if (! $ability) {
-            throw new NotFoundException();
-        }
-
         return $ability;
     }
 

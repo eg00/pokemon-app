@@ -11,6 +11,7 @@ use App\Exceptions\OperationFailedException;
 use App\Models\Location;
 use App\Repositories\LocationRepository;
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Collection;
 
 class LocationService
@@ -39,12 +40,10 @@ class LocationService
     {
         try {
             $location = $this->repository->find($id);
+        } catch (ModelNotFoundException) {
+            throw new NotFoundException();
         } catch (Exception $e) {
             throw new OperationFailedException($e->getMessage(), 0, $e);
-        }
-
-        if (! $location) {
-            throw new NotFoundException();
         }
 
         return $location;

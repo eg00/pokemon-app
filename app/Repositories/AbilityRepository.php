@@ -18,9 +18,12 @@ class AbilityRepository
         return Ability::query()->get();
     }
 
-    public function find(int $id): ?Ability
+    /**
+     * @param int|array<int> $id
+     */
+    public function find(int|array $id): Ability
     {
-        return Ability::find($id);
+        return Ability::findOrFail($id);
     }
 
     public function create(CreateAbilityData $data): Ability

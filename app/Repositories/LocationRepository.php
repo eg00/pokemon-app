@@ -16,9 +16,12 @@ class LocationRepository
         return Location::query()->get();
     }
 
-    public function find(int $id): ?Location
+    /**
+     * @param int|array<int> $id
+     */
+    public function find(int|array $id): Location
     {
-        return Location::find($id);
+        return Location::findOrFail($id);
     }
 
     public function create(CreateLocationData $data): Location

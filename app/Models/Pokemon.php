@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Shape;
 use Carbon\CarbonImmutable;
 use Database\Factories\PokemonFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -51,6 +52,13 @@ class Pokemon extends Model
             'pokemon_id',
             'ability_id',
         );
+    }
+
+    public function scopeFilteredByLocation(Builder $query, string $location): void
+    {
+        $query->whereHas(
+            'location',
+            fn (Builder $query) => $query->where('name', $location));
     }
 
     public static function newFactory(): PokemonFactory

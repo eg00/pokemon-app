@@ -7,6 +7,7 @@ use App\Dto\UpdatePokemonData;
 use App\Exceptions\NotFoundException;
 use App\Exceptions\OperationFailedException;
 use App\Http\Requests\Pokemon\CreatePokemonRequest;
+use App\Http\Requests\Pokemon\IndexPokemonRequest;
 use App\Http\Requests\Pokemon\UpdatePokemonRequest;
 use App\Http\Resources\PokemonResource;
 use App\Services\PokemonService;
@@ -23,14 +24,22 @@ class PokemonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): ResourceCollection|JsonResponse
+    public function index(IndexPokemonRequest $request): ResourceCollection|JsonResponse
     {
         try {
-            return PokemonResource::collection($this->service->getAll());
+            $location = $request->input('location');
+
+            $pokemons = $location ? $this->service->getFiltered($location) : $this->service->getAll();
+
+            if ($request->input('sort') === 'location') {
+                $pokemons = $this->service->sortByLocation($pokemons, $request->input('order', 'asc'));
+            }
+
+            return PokemonResource::collection($pokemons);
         } catch (OperationFailedException $e) {
             return new JsonResponse(
                 'An error occurs while performing the operation',
-                Response::HTTP_INTERNAL_SERVER_ERROR,
+                Response::HTTP_INTERNAL_SERVER_ERROR
             );
         }
     }

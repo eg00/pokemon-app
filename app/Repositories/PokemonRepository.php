@@ -26,6 +26,14 @@ class PokemonRepository
         return Pokemon::query()->with(['location', 'abilities'])->get();
     }
 
+    public function getFiltered(string $location): Collection
+    {
+        return Pokemon::query()
+            ->with(['location', 'abilities'])
+            ->filteredByLocation($location)
+            ->get();
+    }
+
     public function find(int $id): Pokemon
     {
         /** @var Pokemon */
@@ -96,5 +104,12 @@ class PokemonRepository
         $pokemon = $this->find($id);
 
         Storage::disk(Pokemon::IMAGE_DISK)->delete($pokemon->image);
+    }
+
+    public function sortByLocation(Collection $pokemons, string $sortOrder): Collection
+    {
+        return $sortOrder === 'asc'
+            ? $pokemons->sortBy(fn (Pokemon $pokemon) => $pokemon->location->name)
+            : $pokemons->sortByDesc(fn (Pokemon $pokemon) => $pokemon->location->name);
     }
 }

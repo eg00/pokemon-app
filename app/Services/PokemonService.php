@@ -20,6 +20,15 @@ class PokemonService
     {
     }
 
+    public function getFiltered(string $location): Collection
+    {
+        try {
+            return $this->repository->getFiltered($location);
+        } catch (Exception $e) {
+            throw new OperationFailedException($e->getMessage(), 0, $e);
+        }
+    }
+
     /**
      * @throws OperationFailedException
      */
@@ -27,6 +36,15 @@ class PokemonService
     {
         try {
             return $this->repository->all();
+        } catch (Exception $e) {
+            throw new OperationFailedException($e->getMessage(), 0, $e);
+        }
+    }
+
+    public function sortByLocation(Collection $pokemons, string $sortOrder): Collection
+    {
+        try {
+            return $this->repository->sortByLocation($pokemons, $sortOrder);
         } catch (Exception $e) {
             throw new OperationFailedException($e->getMessage(), 0, $e);
         }

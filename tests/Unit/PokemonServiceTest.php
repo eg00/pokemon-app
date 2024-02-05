@@ -86,4 +86,22 @@ class PokemonServiceTest extends TestCase
         $this->service->delete($pokemon->id);
         $this->assertDatabaseMissing('pokemon', $pokemon->toArray());
     }
+
+    public function testSortByLocation(): void
+    {
+        Pokemon::factory()->count(3)->create();
+        $pokemons = $this->service->getAll();
+        $sorted = $this->service->sortByLocation($pokemons, 'asc');
+        $this->assertEquals($pokemons->sortBy('location.name'), $sorted);
+        $sorted = $this->service->sortByLocation($pokemons, 'desc');
+        $this->assertEquals($pokemons->sortByDesc('location.name'), $sorted);
+    }
+
+    public function testGetFiltered(): void
+    {
+        Pokemon::factory()->count(3)->create();
+        $pokemons = $this->service->getAll();
+        $filtered = $this->service->getFiltered('test');
+        $this->assertEquals($pokemons->where('name', 'like', '%test%'), $filtered);
+    }
 }
